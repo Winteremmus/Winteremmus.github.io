@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Christmas Quiz | Snow Mountain Arcade</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body class="quiz-page">
+    <div class="site-header">
+    <a class="site-title" href="index.html">Snow Mountain Arcade</a>
+
+    <div class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="game1.html">Memory Match</a>
+      <a href="game2.html">Snow Shot</a>
+      <a href="quiz.html" aria-current="page">Quiz</a>
+    </div>
+  </div>
+
+  <div class="quiz-content">
+
+    <h1>Christmas Quiz</h1>
+
+    <form>
+      <div class="question">
+        <label>1. What colour is Santa's suit?</label><br>
+        <input type="radio" name="suit" value="red" id="o_red">
+        <label for="o_red">Red</label>
+        <input type="radio" name="suit" value="blue" id="o_blue">
+        <label for="o_blue">Blue</label>
+        <input type="radio" name="suit" value="green" id="o_green">
+        <label for="o_green">Green</label>
+      </div>
+
+      <div class="question">
+        <label for="month">2. What month is Christmas in? (type the word)</label><br>
+        <input type="text" id="month">
+      </div>
+
+      <div class="question">
+        <label for="mySelect">3. Which is a classic Christmas hot drink?</label>
+        <select id="mySelect">
+          <option value="lemonade">Lemonade</option>
+          <option value="hotcocoa">Hot Cocoa</option>
+          <option value="cola">Cola</option>
+        </select>
+      </div>
+
+      <div class="question">
+        <label>4. Which are common Christmas decorations? (choose all that apply)</label><br>
+        <input type="checkbox" value="lights" id="lights">
+        <label for="lights">Tree lights</label>
+        <input type="checkbox" value="tinsel" id="tinsel">
+        <label for="tinsel">Tinsel</label>
+        <input type="checkbox" value="beachball" id="beachball">
+        <label for="beachball">Beach ball</label>
+        <input type="checkbox" value="candycane" id="candycane">
+        <label for="candycane">Candy cane</label>
+      </div>
+
+      <div class="question">
+        <label>5. What is the name of the red-nosed reindeer?</label><br>
+        <input type="radio" name="reindeer" value="rudolph" id="o_rudolph">
+        <label for="o_rudolph">Rudolph</label>
+        <input type="radio" name="reindeer" value="blitzen" id="o_blitzen">
+        <label for="o_blitzen">Blitzen</label>
+        <input type="radio" name="reindeer" value="cupid" id="o_cupid">
+        <label for="o_cupid">Cupid</label>
+      </div>
+
+      <div class="question">
+        <label for="reindeerNum">6. How many reindeer pull Santa's sleigh in the classic story? (type a number)</label><br>
+        <input type="number" id="reindeerNum">
+      </div>
+
+      <div class="question">
+        <label for="treeSelect">7. What kind of tree is a traditional Christmas tree?</label>
+        <select id="treeSelect">
+          <option value="palm">Palm tree</option>
+          <option value="pine">Pine tree</option>
+          <option value="cactus">Cactus</option>
+        </select>
+      </div>
+
+      <div class="question">
+        <label>8. Which are traditional Christmas activities? (choose all that apply)</label><br>
+        <input type="checkbox" value="carols" id="carols">
+        <label for="carols">Sing carols</label>
+        <input type="checkbox" value="turkey" id="turkey">
+        <label for="turkey">Eat a big dinner</label>
+        <input type="checkbox" value="surf" id="surf">
+        <label for="surf">Go surfing</label>
+        <input type="checkbox" value="decorate" id="decorate">
+        <label for="decorate">Decorate the tree</label>
+      </div>
+
+      <button class="quiz-check" type="button" onclick="check()">Check Answers</button>
+      <p id="show" aria-live="polite"></p>
+        </form>
+  </div>
+
+  <script>
+
+    let mark = 0;
+
+    function check() {
+      mark = 0;
+
+
+      if (document.getElementById('o_red').checked) {
+        mark += 5;
+      }
+
+
+      if (document.getElementById('month').value.toLowerCase() == 'december') {
+        mark += 5;
+      }
+
+
+      if (document.getElementById('mySelect').value == 'hotcocoa') {
+        mark += 5;
+      }
+
+
+      let q4 = 0;
+      if (document.getElementById('lights').checked) q4 += 2;
+      if (document.getElementById('tinsel').checked) q4 += 2;
+      if (document.getElementById('candycane').checked) q4 += 2;
+      if (document.getElementById('beachball').checked) q4 -= 2;
+      if (q4 > 5) q4 = 5;
+      if (q4 < 0) q4 = 0;
+      mark += q4;
+
+
+      if (document.getElementById('o_rudolph').checked) {
+        mark += 5;
+      }
+
+
+      if (parseInt(document.getElementById('reindeerNum').value) == 9) {
+        mark += 5;
+      }
+
+
+      if (document.getElementById('treeSelect').value == 'pine') {
+        mark += 5;
+      }
+
+
+      let q8 = 0;
+      if (document.getElementById('carols').checked) q8 += 2;
+      if (document.getElementById('turkey').checked) q8 += 2;
+      if (document.getElementById('decorate').checked) q8 += 2;
+      if (document.getElementById('surf').checked) q8 -= 2;
+      if (q8 > 5) q8 = 5;
+      if (q8 < 0) q8 = 0;
+      mark += q8;
+
+      document.getElementById('show').innerHTML = 'Your score: ' + mark + ' / 40';
+    }
+  </script>
+</body>
+</html>
